@@ -1,3 +1,6 @@
+from sqlalchemy.sql.operators import truediv
+
+
 def digit(n, k):
     """Return the digit that is k from the right of n for positive integers n and k.
 
@@ -70,7 +73,12 @@ def divisible_by_k(n, k):
     0
     """
     "*** YOUR CODE HERE ***"
-
+    count = 0
+    for i in range(1, n + 1):
+        if i % k == 0:
+            print(i)
+            count += 1
+    return count
 
 def sum_digits(y):
     """Sum all the digits of y.
@@ -86,6 +94,11 @@ def sum_digits(y):
     6
     """
     "*** YOUR CODE HERE ***"
+    sum = 0
+    while y:
+        sum += y % 10
+        y //= 10
+    return sum
 
 
 def double_eights(n):
@@ -104,4 +117,10 @@ def double_eights(n):
     False
     """
     "*** YOUR CODE HERE ***"
+    count = 0
+    while n:
+        if n % 10 == 8 and n // 10 % 10 == 8:
+            return True
+        n //= 10
 
+    return False
