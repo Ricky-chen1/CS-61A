@@ -1,5 +1,8 @@
 from operator import add, sub
 
+from numba.core.cgutils import printf
+
+
 def a_plus_abs_b(a, b):
     """Return a+abs(b), but without calling abs.
 
@@ -13,9 +16,9 @@ def a_plus_abs_b(a, b):
     3
     """
     if b < 0:
-        f = a - b
+        f = sub
     else:
-        f = a + b
+        f = add
 
     return f(a, b)
 
@@ -67,7 +70,9 @@ def largest_factor(n):
     1
     """
     "*** YOUR CODE HERE ***"
-
+    for i in reversed(range(1,n)):
+        if n % i == 0:
+            return i
 
 
 def hailstone(n):
@@ -90,4 +95,14 @@ def hailstone(n):
     1
     """
     "*** YOUR CODE HERE ***"
-
+    count = 0
+    while n != 1 :
+        print(int(n))
+        if n % 2 :
+            n = n * 3 + 1
+        else:
+            n /= 2
+        count += 1
+    print(1)
+    count += 1
+    return count
